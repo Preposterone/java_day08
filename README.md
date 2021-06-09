@@ -21,9 +21,9 @@ Spring Framework is an integral part of the most Java-based corporate systems. T
 
 Spring operation principle is fully based on DI/IoC patterns which you should learn about before using this technology.
 
-The central concept in Spring framework is a bin (component) that represents an object inside an ApplicationContext container. The container also creates links between bins.
+The central concept in Spring framework is a bean (component) that represents an object inside an ApplicationContext container. The container also creates links between beans.
 
-There are several ways to configure bins:
+There are several ways to configure beans:
 1. Using an xml.file.
 2. Using a Java configuration (configuring with annotations).
 3. Combined configuration.
@@ -60,7 +60,7 @@ Exercise 00: Spring Context ||
 Turn-in directory |	ex00
 Files to turn-in |	Spring-folder
 
-Let's implement a loosely-coupled system comprised of a set of components (bins) and compliant with IoC/DI principles.
+Let's implement a loosely-coupled system comprised of a set of components (beans) and compliant with IoC/DI principles.
 
 Let's assume there is Printer interface designed to display a specific message.
 
@@ -132,7 +132,7 @@ UsersRepository interface declared as UsersRepository extends CrudRepository<Use
 
 In addition, two implementations of UsersRepository are required:<br> UsersRepositoryJdbcImpl (uses standard Statements meachanisms) and UsersRepositoryJdbcTemplateImpl (is based on JdbcTemaplte/NamedParameterJdbcTemaple). Both classes shall accept DataSource object as a constructor argument.
 
-In context.xml file, bins shall be declared for both repository types with different identifiers, as well as two bins of DataSource type: DriverManagerDataSource and HikariDataSource.
+In context.xml file, beans shall be declared for both repository types with different identifiers, as well as two beans of DataSource type: DriverManagerDataSource and HikariDataSource.
 
 In addition, data for connecting to DB shall be specified in db.properties file and included in context.xml using `${db.url}`  placeholders.
 
@@ -181,11 +181,11 @@ Exercise 02: AnnotationConfig ||
 Turn-in directory |	ex02
 Files to turn-in |	Service-folder
 
-Now, you need to configure Spring-application configuration mechanisms using annotations. To do so, use the configuration class marked as @Configuration. Inside this class, you need to describe bins for connecting to DataSource DB using @Bean annotation. As in the previous task, connection data shall be located inside db.properties file. You also need to make sure context.xml is not present.
+Now, you need to configure Spring-application configuration mechanisms using annotations. To do so, use the configuration class marked as @Configuration. Inside this class, you need to describe beans for connecting to DataSource DB using @Bean annotation. As in the previous task, connection data shall be located inside db.properties file. You also need to make sure context.xml is not present.
 
-Also implement UsersService/UsersServiceImpl interface/class pair with a dependency on UsersRepository declared in it. Insertion of correct repository bin shall be implemented using @Autowired annotation (similarly, you need to bind DataSource inside repositories). Collisions in automatic binding shall be resolved with @Qualifier annotation.
+Also implement UsersService/UsersServiceImpl interface/class pair with a dependency on UsersRepository declared in it. Insertion of correct repository bean shall be implemented using @Autowired annotation (similarly, you need to bind DataSource inside repositories). Collisions in automatic binding shall be resolved with @Qualifier annotation.
 
-Bins for UsersService and UsersRepository shall be defined using @Component annotation.
+Beans for UsersService and UsersRepository shall be defined using @Component annotation.
 
 In UsersServiceImpl, implement String signUp(String email)method that registers a new user and saves its details in DB. This method returns a temporary password assigned to the user by the system (this information should also be saved in the database).
 
